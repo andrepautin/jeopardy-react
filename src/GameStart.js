@@ -4,7 +4,6 @@ function GameStart() {
   const [startClicked, setStartClicked] = useState(false);
   
   function handleClick() {
-    console.log("clicked");
     setStartClicked(true);
   }
 
