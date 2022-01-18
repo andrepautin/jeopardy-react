@@ -1,5 +1,5 @@
 
-function JeopardyHeader() {
+function GameHeader() {
   return (
     <div>
       <h1>Jeopardy!</h1>
@@ -7,4 +7,4 @@ function JeopardyHeader() {
   );
 }
 
-export default JeopardyHeader;
+export default GameHeader;

@@ -2,12 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 // import GameBoard from './GameBoard';
 import GameStart from './GameStart';
-import JeopardyHeader from './JeopardyHeader';
+import GameHeader from './GameHeader';
 
 function App() {
   return (
     <div>
-      <JeopardyHeader/>
+      <GameHeader/>
       <GameStart/>
     </div>
   );
