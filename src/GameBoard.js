@@ -7,15 +7,12 @@ const NUM_CLUES_PER_CAT = 5;
 
 function GameBoard() {
   // state for gameboard for when questions clicked
-  // state for if categories were collected
-  const [gotCategories, setGotCategories] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [gotCategoryIds, setGotCategoryIds] = useState(false);
-  const [categoryIds, setCategoryIds] = useState([]);
-  // state for if categoryIds were collected
 
-  // let categories = [];
-  // let categoryIds = [];
+  // const [gotCategories, setGotCategories] = useState(false);
+  // const [gotCategoryIds, setGotCategoryIds] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [categoryIds, setCategoryIds] = useState([]);
+
   // TODO-- Get category ids
   useEffect (
     function getCategories() {
@@ -41,7 +38,7 @@ function GameBoard() {
   useEffect (
     function getIds() {
       async function getCategoryIds() {
-        console.log(categories.map(data => data.id));
+        console.log("CATEGORYIDS--->", categories.map(data => data.id));
         setCategoryIds(categories.map(data => data.id));
       }
       getCategoryIds();
