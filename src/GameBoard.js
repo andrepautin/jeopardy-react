@@ -50,11 +50,13 @@ function GameBoard() {
         method: "GET",
         params: {id: id}
       });
-      setClues([...clues, response.data.clues]);
+      // NOT WORKING
+      // setClues([...clues, response.data.clues]);
     }
   }
   getClues();
-  console.log(clues);
+  // NOT WORKING
+  // console.log(clues);
 
   return (
     "Gameboard component"
