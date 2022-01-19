@@ -10,11 +10,12 @@ function GameBoard() {
 
   // const [gotCategories, setGotCategories] = useState(false);
   // const [gotCategoryIds, setGotCategoryIds] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [randomCategories, setRandomCategories] = useState([]);
   const [categoryIds, setCategoryIds] = useState([]);
+  const [clues, setClues] = useState([]);
 
   // TODO-- Get category ids
-  useEffect (
+  useEffect(
     function getCategories() {
       async function getCategoriesSample() {
         const response = await axios({
@@ -25,7 +26,7 @@ function GameBoard() {
         let sample = _.sampleSize(response.data, NUM_CATEGORIES);
         console.log("SAMPLE--->", sample);
         // setGotCategories(true);
-        setCategories(sample);
+        setRandomCategories(sample);
         // setGotCategories(true);
         // console.log("GOTCATEGORIES--->", gotCategories);
         // console.log("GOTCATEGORYIDS--->", gotCategoryIds);
@@ -35,15 +36,25 @@ function GameBoard() {
     }, []
   )
 
-  useEffect (
-    function getIds() {
-      async function getCategoryIds() {
-        console.log("CATEGORYIDS--->", categories.map(data => data.id));
-        setCategoryIds(categories.map(data => data.id));
-      }
-      getCategoryIds();
-    }, [categories]
+  useEffect(
+    function getCategoryIds() {
+      console.log("RANDOMCATEGORIES--->", randomCategories);
+      console.log("CATEGORYIDS--->", randomCategories.map(data => data.id));
+      setCategoryIds(randomCategories.map(data => data.id));
+    }, [randomCategories]
   )
+  async function getClues() {
+    for (let id of categoryIds) {
+      let response = await axios({
+        url: `${BASE_API_URL}/category`,
+        method: "GET",
+        params: {id: id}
+      });
+      setClues([...clues, response.data.clues]);
+    }
+  }
+  getClues();
+  console.log(clues);
 
   return (
     "Gameboard component"
