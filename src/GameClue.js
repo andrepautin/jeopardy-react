@@ -1,6 +1,8 @@
 
 function GameClue() {
   return (
-    "GameClue Component"
+    "GameClue"
   )
 }
+
+export default GameClue;
