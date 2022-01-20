@@ -12,9 +12,10 @@ function GameBoard() {
   // const [gotCategoryIds, setGotCategoryIds] = useState(false);
   const [randomCategories, setRandomCategories] = useState([]);
   const [categoryIds, setCategoryIds] = useState([]);
-  const [clues, setClues] = useState([]);
+  const [categoryClues, setCategoryClues] = useState([]);
 
-  // TODO-- Get category ids
+  // makes api call to jservice and retrieves 6 random categories
+  // TODO: error handling (in case of server error or other)
   useEffect(
     function getCategories() {
       async function getCategoriesSample() {
@@ -24,39 +25,50 @@ function GameBoard() {
           params: {count: 100, offset: Math.floor(Math.random() * 1000)}
         });
         let sample = _.sampleSize(response.data, NUM_CATEGORIES);
-        console.log("SAMPLE--->", sample);
-        // setGotCategories(true);
         setRandomCategories(sample);
-        // setGotCategories(true);
-        // console.log("GOTCATEGORIES--->", gotCategories);
-        // console.log("GOTCATEGORYIDS--->", gotCategoryIds);
-        // console.log("CATEGORYIDS--->", categoryIds);
       }
       getCategoriesSample();
     }, []
   )
 
+  // retrieves category ids from state array of randomcategories
+  // TODO: error handling?
   useEffect(
     function getCategoryIds() {
-      console.log("RANDOMCATEGORIES--->", randomCategories);
-      console.log("CATEGORYIDS--->", randomCategories.map(data => data.id));
       setCategoryIds(randomCategories.map(data => data.id));
     }, [randomCategories]
   )
-  async function getClues() {
-    for (let id of categoryIds) {
-      let response = await axios({
-        url: `${BASE_API_URL}/category`,
-        method: "GET",
-        params: {id: id}
-      });
-      // NOT WORKING
-      // setClues([...clues, response.data.clues]);
-    }
-  }
-  getClues();
-  // NOT WORKING
-  // console.log(clues);
+
+  // iterate over categoryIds and make api call to retrieve that category info
+  // sets state of clues to be an array 
+  useEffect(
+    function getCat() {
+      async function getCategory() {
+        for (let id of categoryIds) {
+          let response = await axios({
+            url: `${BASE_API_URL}/category`,
+            method: "GET",
+            params: {id: id}
+          });
+          let category = response.data;
+          let catClues = category.clues.map(clue => {
+            clue = {
+              question: clue.question, 
+              answer: clue.answer, 
+              showing: null
+            };
+            return clue;
+          })
+          setCategoryClues(categoryClues => 
+            [...categoryClues, {title: category.title, catClues: catClues}]
+          );
+        }
+      }
+      getCategory();
+    }, [categoryIds]
+  )
+
+  console.log("CATEGORYCLUES--->", categoryClues);
 
   return (
     "Gameboard component"
