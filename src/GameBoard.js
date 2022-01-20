@@ -70,30 +70,39 @@ function GameBoard() {
     }, [randomCategories]
   )
 
-
-  /** after categoryClues collected, need to
-   *  create first row with category titles
+  // console.log(categoryClues);
+  /** after categoryClues complete
+   *  should iterate over category clues
+   *  retrieve one clue from each category and
+   *  put into array of arrays that will create a 
+   *  new row in the table
    */
+      // loop num_clues_per_cat times
+      // create empty array
+      // iterate num_categories times
+      // grab the clue in that category and push to array
+      // push to clues array
+  // if (categoryClues.length === NUM_CATEGORIES) {
+  //   setCluesLoaded(true);
+  // }
+  // if (cluesLoaded) {
+  //   console.log("CLUES LOADED");
+  // }
+  if (categoryClues.length === NUM_CATEGORIES) {
+    console.log("CLUES LOADED");
+  }
 
-  // create array of category titles
-  // iterate over categoryClues and retrieve the title
-  // let titles = useRef([]);
-  // useEffect(
-  //   function getCategoryTitles() {
-  //     titles.current = categoryClues.map(cat => cat.title);
-  //     // console.log("TITLES--->", titles);
-  //   }, [categoryClues]
-  // )
-
-  // console.log(randomCategories);
 
   return (
     <table>
       <thead>
         <tr>
-          {categoryClues.map(cat => <td>{cat.title}</td>)}
+          {categoryClues.map(cat => <td key={cat.title}>{cat.title}</td>)}
         </tr>
       </thead>
+      <tbody>
+        <tr></tr>
+      </tbody>
     </table>
     // "GameBoard Component"
     // TODO:
