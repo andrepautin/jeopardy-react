@@ -71,7 +71,11 @@ function GameBoard() {
   console.log("CATEGORYCLUES--->", categoryClues);
 
   return (
-    "Gameboard component"
+    "GameBoard Component"
+    // TODO:
+      // will contain a table
+      // table header will be the category titles
+      // each cell below a category title will be a clue component
   );
 }
 
