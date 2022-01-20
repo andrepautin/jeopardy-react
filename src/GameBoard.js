@@ -40,7 +40,8 @@ function GameBoard() {
   )
 
   // iterate over categoryIds and make api call to retrieve that category info
-  // sets state of clues to be an array 
+  // sets state of clues to be an array of objects containining each category title 
+    // and its array of clues
   useEffect(
     function getCat() {
       async function getCategory() {
