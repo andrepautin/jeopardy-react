@@ -1,20 +1,18 @@
 import axios from "axios";
 import _ from "lodash";
-import {useState, useEffect, useRef} from 'react';
+import React from "react";
+import ReactDOM from "react";
+import {v4 as uuidv4} from "uuid";
+import {useState, useEffect} from 'react';
 import GameClue from "./GameClue";
 const BASE_API_URL = "http://jservice.io/api/";
 const NUM_CATEGORIES = 6;
 const NUM_CLUES_PER_CAT = 5;
 
 function GameBoard() {
-  // state for gameboard for when questions clicked
-
-  // const [gotCategories, setGotCategories] = useState(false);
-  // const [gotCategoryIds, setGotCategoryIds] = useState(false);
   const [randomCategories, setRandomCategories] = useState([]);
   const [categoryClues, setCategoryClues] = useState([]);
-  // const [categoryIds, setCategoryIds] = useState([]);
-
+  const [clueRows, setClueRows] = useState([]);
   // makes api call to jservice and retrieves 6 random categories
   // TODO: error handling (in case of server error or other)
   useEffect(
@@ -32,17 +30,6 @@ function GameBoard() {
     }, []
   )
 
-  // retrieves category ids from state array of randomcategories
-  // TODO: error handling?
-  // useEffect(
-  //   function getCategoryIds() {
-  //     setCategoryIds(randomCategories.map(data => data.id));
-  //   }, [randomCategories]
-  // )
-
-  // iterate over categoryIds and make api call to retrieve that category info
-  // sets state of clues to be an array of objects containining each category title 
-    // and its array of clues
   useEffect(
     function getCat() {
       async function getCategory() {
@@ -70,28 +57,30 @@ function GameBoard() {
     }, [randomCategories]
   )
 
-  // console.log(categoryClues);
   /** after categoryClues complete
    *  should iterate over category clues
    *  retrieve one clue from each category and
    *  put into array of arrays that will create a 
    *  new row in the table
    */
-      // loop num_clues_per_cat times
-      // create empty array
-      // iterate num_categories times
-      // grab the clue in that category and push to array
-      // push to clues array
-  // if (categoryClues.length === NUM_CATEGORIES) {
-  //   setCluesLoaded(true);
-  // }
-  // if (cluesLoaded) {
-  //   console.log("CLUES LOADED");
-  // }
-  if (categoryClues.length === NUM_CATEGORIES) {
-    console.log("CLUES LOADED");
-  }
+  useEffect(
+    function getClues() {
+      if (categoryClues.length === NUM_CATEGORIES) {
+        for (let i = 0; i < NUM_CLUES_PER_CAT; i++) {
+          let row = [];
+          for (let j = 0; j < NUM_CATEGORIES; j++) {
+            let category = categoryClues[j].catClues;
+            row.push(category[i]);
+          }
+          setClueRows(clueRows => [...clueRows, row]);
+        }
+      }
+    }, [categoryClues]
+  )
 
+  if (clueRows.length === NUM_CLUES_PER_CAT) {
+    console.log("CLUEROWS", clueRows);
+  }
 
   return (
     <table>
@@ -101,7 +90,12 @@ function GameBoard() {
         </tr>
       </thead>
       <tbody>
-        <tr></tr>
+        {clueRows.map(
+          clueRow => 
+            <tr key={uuidv4()}>{clueRow.map(
+              clue => 
+                <td key={uuidv4()}><GameClue clue={clue}/></td>)}
+            </tr>)}
       </tbody>
     </table>
     // "GameBoard Component"

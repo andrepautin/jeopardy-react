@@ -1,7 +1,7 @@
 
-function GameClue() {
+function GameClue({ clue }) {
   return (
-    "GameClue"
+    <p>{clue.question}</p>
   )
 }
 
