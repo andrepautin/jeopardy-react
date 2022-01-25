@@ -9,6 +9,7 @@ const BASE_API_URL = "http://jservice.io/api/";
 const NUM_CATEGORIES = 6;
 const NUM_CLUES_PER_CAT = 5;
 
+/** GameBoard Component -> GameClue */
 function GameBoard() {
   const [randomCategories, setRandomCategories] = useState([]);
   const [categoryClues, setCategoryClues] = useState([]);

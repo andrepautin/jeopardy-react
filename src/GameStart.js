@@ -1,8 +1,14 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import GameBoard from './GameBoard';
+
+/** GameStart Component -> GameBoard
+ *  State: 
+ *    - showStart (whether or not to show start button)
+ *    - startClicked (if start button was clicked)
+ */
 function GameStart() {
-  const [startClicked, setStartClicked] = useState(false);
   const [showStart, setShowStart] = useState(true);
+  const [startClicked, setStartClicked] = useState(false);
   // const [showRestart, setShowRestart] = useState(false);
   // const [restartClicked, setRestartClicked] = useState(false);
   
@@ -18,10 +24,10 @@ function GameStart() {
 
   return (
     <div>
-      {showStart && <button onClick={handleClick}>Start</button>}
+      {showStart && !startClicked && <button onClick={handleClick}>Start</button>}
       {/* {!showRestart && <button onClick={handleClick}>Start</button>} */}
       {/* {showRestart && <button onClick={handleRestart}>Restart</button>} */}
-      {startClicked && <GameBoard/>}
+      {startClicked && !showStart && <GameBoard/>}
       {/* {restartClicked && <GameBoard/>} */}
     </div>
   );

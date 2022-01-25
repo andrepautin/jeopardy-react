@@ -1,8 +1,10 @@
 import './App.css';
-// import GameBoard from './GameBoard';
 import GameStart from './GameStart';
 import GameHeader from './GameHeader';
 
+/** App Component -> GameHeader
+ *                -> GameStart
+ */
 function App() {
   return (
     <div>

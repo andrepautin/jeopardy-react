@@ -1,4 +1,5 @@
 
+/** GameHeader Component */
 function GameHeader() {
   return (
     <div>
