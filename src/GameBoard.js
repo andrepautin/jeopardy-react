@@ -83,26 +83,24 @@ function GameBoard() {
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {categoryClues.map(cat => <td key={cat.title}>{cat.title}</td>)}
-        </tr>
-      </thead>
-      <tbody>
-        {clueRows.map(
-          clueRow => 
-            <tr key={uuidv4()}>{clueRow.map(
-              clue => 
-                <td key={uuidv4()}><GameClue clue={clue}/></td>)}
-            </tr>)}
-      </tbody>
-    </table>
-    // "GameBoard Component"
-    // TODO:
-      // will contain a table
-      // table header will be the category titles
-      // each cell below a category title will be a clue component
+    <div>
+      {categoryClues.length !== 6 && <div>Loading Game...</div>}
+      <table>
+        <thead>
+          {categoryClues.length === 6 && <tr>
+            {categoryClues.map(cat => <td key={cat.title}>{cat.title}</td>)}
+          </tr>}
+        </thead>
+        <tbody>
+          {clueRows.map(
+            clueRow => 
+              <tr key={uuidv4()}>{clueRow.map(
+                clue => 
+                  <td key={uuidv4()}><GameClue clue={clue}/></td>)}
+              </tr>)}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
