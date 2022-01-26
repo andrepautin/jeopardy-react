@@ -5,7 +5,7 @@ import {useState} from 'react';
  *    - clueClicked (whether a clue has been clicked or not)
  *    - questionClicked (whether a question has been clicked or not)
  *  Props:
- *    - clue = {title, question, answer}
+ *    - clue = {question, answer, showing}
  */
 function GameClue({ clue }) {
   const [clueClicked, setClueClicked] = useState(false);

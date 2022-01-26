@@ -7,28 +7,26 @@ import GameBoard from './GameBoard';
  *    - startClicked (if start button was clicked)
  */
 function GameStart() {
+  // TODO: need to get restart to clear 
+  // state in GameBoard so new api calls can be made
   const [showStart, setShowStart] = useState(true);
   const [startClicked, setStartClicked] = useState(false);
-  // const [showRestart, setShowRestart] = useState(false);
-  // const [restartClicked, setRestartClicked] = useState(false);
+  const [restartClicked, setRestartClicked] = useState(false);
   
   function handleClick() {
     setStartClicked(true);
     setShowStart(false);
-    // setShowRestart(true);
   }
 
-  // function handleRestart() {
-  //   setRestartClicked(true);
-  // }
+  function handleReset() {
+    setRestartClicked(true);
+  }
 
   return (
     <div>
       {showStart && !startClicked && <button onClick={handleClick}>Start</button>}
-      {/* {!showRestart && <button onClick={handleClick}>Start</button>} */}
-      {/* {showRestart && <button onClick={handleRestart}>Restart</button>} */}
-      {startClicked && !showStart && <GameBoard/>}
-      {/* {restartClicked && <GameBoard/>} */}
+      {startClicked && <button onClick={handleReset}>Restart</button>}
+      {startClicked && !showStart && <GameBoard data={restartClicked}/>}
     </div>
   );
 }

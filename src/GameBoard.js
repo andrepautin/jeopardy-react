@@ -10,12 +10,22 @@ const NUM_CATEGORIES = 6;
 const NUM_CLUES_PER_CAT = 5;
 
 /** GameBoard Component -> GameClue */
-function GameBoard() {
+function GameBoard(props) {
+  // TODO: implement api call for clues 
+  // to get more info (value to show instead of "?")
+
   const [randomCategories, setRandomCategories] = useState([]);
   const [categoryClues, setCategoryClues] = useState([]);
   const [clueRows, setClueRows] = useState([]);
   // makes api call to jservice and retrieves 6 random categories
   // TODO: error handling (in case of server error or other)
+
+  // function resetGame() {
+  //   setRandomCategories([]);
+  //   setCategoryClues([]);
+  //   setClueRows([]);
+  // }
+
   useEffect(
     function getCategories() {
       async function getCategoriesSample() {
@@ -79,28 +89,47 @@ function GameBoard() {
     }, [categoryClues]
   )
 
-  if (clueRows.length === NUM_CLUES_PER_CAT) {
-    console.log("CLUEROWS", clueRows);
-  }
-
   return (
     <div>
-      {categoryClues.length !== 6 && <div>Loading Game...</div>}
-      <table>
-        <thead>
-          {categoryClues.length === 6 && <tr>
-            {categoryClues.map(cat => <td key={cat.title}>{cat.title}</td>)}
-          </tr>}
-        </thead>
-        <tbody>
-          {clueRows.map(
-            clueRow => 
-              <tr key={uuidv4()}>{clueRow.map(
-                clue => 
-                  <td key={uuidv4()}><GameClue clue={clue}/></td>)}
-              </tr>)}
-        </tbody>
-      </table>
+      <div>
+        {categoryClues.length !== 6 && <div>Loading Game...</div>}
+        <table>
+          <thead>
+            {categoryClues.length === 6 && <tr>
+              {categoryClues.map(cat => <td key={cat.title}>{cat.title}</td>)}
+            </tr>}
+          </thead>
+          <tbody>
+            {clueRows.map(
+              clueRow => 
+                <tr key={uuidv4()}>{clueRow.map(
+                  clue => 
+                    <td key={uuidv4()}><GameClue clue={clue}/></td>)}
+                </tr>)}
+          </tbody>
+        </table>
+      </div>
+      {/* {props.data === true 
+        ? resetGame() 
+        : 
+        <div>
+        {categoryClues.length !== 6 && <div>Loading Game...</div>}
+        <table>
+          <thead>
+            {categoryClues.length === 6 && <tr>
+              {categoryClues.map(cat => <td key={cat.title}>{cat.title}</td>)}
+            </tr>}
+          </thead>
+          <tbody>
+            {clueRows.map(
+              clueRow => 
+                <tr key={uuidv4()}>{clueRow.map(
+                  clue => 
+                    <td key={uuidv4()}><GameClue clue={clue}/></td>)}
+                </tr>)}
+          </tbody>
+        </table>
+      </div>} */}
     </div>
   );
 }
