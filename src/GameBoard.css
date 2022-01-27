@@ -1,0 +1,15 @@
+.board {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.cat-title {
+    color: white;
+    background-color: blue;
+}
+
+.loading {
+    color: white;
+    background-color: black;
+}

@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import GameBoard from './GameBoard';
+import "./GameStart.css";
 
 /** GameStart Component -> GameBoard
  *  State: 
@@ -7,11 +8,9 @@ import GameBoard from './GameBoard';
  *    - startClicked (if start button was clicked)
  */
 function GameStart(props) {
-  // TODO: need to get restart to clear 
-  // state in GameBoard so new api calls can be made
+
   const [showStart, setShowStart] = useState(true);
   const [startClicked, setStartClicked] = useState(false);
-  // const [restartClicked, setRestartClicked] = useState(false);
   
   function handleClick() {
     setStartClicked(true);
@@ -23,7 +22,7 @@ function GameStart(props) {
   }
 
   return (
-    <div>
+    <div className="load-game">
       {showStart && !startClicked && <button onClick={handleClick}>Start</button>}
       {startClicked && <button onClick={handleReset}>Restart</button>}
       {startClicked && !showStart && <GameBoard clues={props.clues} categories={props.categories}/>}

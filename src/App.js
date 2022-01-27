@@ -92,7 +92,7 @@ function App() {
     }, [categoryClues]
   )
   return (
-    <div>
+    <div className="app-main">
       <GameHeader/>
       <GameStart clues={clueRows} categories={categoryClues} reset={resetGame}/>
     </div>

@@ -1,9 +1,9 @@
-
+import './GameHeader.css';
 /** GameHeader Component */
 function GameHeader() {
   return (
     <div>
-      <h1>Jeopardy!</h1>
+      <h1 className="header">JEOPARDY!</h1>
     </div>
   );
 }

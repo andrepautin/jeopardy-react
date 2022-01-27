@@ -1,5 +1,5 @@
 import {useState} from 'react';
-
+import "./GameClue.css";
 /** GameClue component
  *  State:
  *    - clueClicked (whether a clue has been clicked or not)
@@ -20,7 +20,7 @@ function GameClue({ clue }) {
   }
 
   return (
-    <div>
+    <div className="clue">
       {!clueClicked && 
       !questionClicked && 
       <p onClick={handleClueClick}>?</p>
