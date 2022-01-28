@@ -3,7 +3,7 @@ import './GameHeader.css';
 function GameHeader() {
   return (
     <div>
-      <h1 className="header">JEOPARDY!</h1>
+      <h1 className="header-title">JEOPARDY!</h1>
     </div>
   );
 }

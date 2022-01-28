@@ -3,7 +3,7 @@
     to {color: rgb(203, 203, 48);}
 }
 
-.header {
+.header-title {
     font-size: 2.5em;
     text-align: center;
     color: rgb(203, 203, 48);
@@ -11,4 +11,8 @@
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-direction: alternate-reverse;
+}
+
+div {
+    margin-bottom: -10px;
 }
