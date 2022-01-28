@@ -58,7 +58,6 @@ function App() {
             clue = {
               question: clue.question, 
               answer: clue.answer, 
-              showing: null
             };
             return clue;
           })
@@ -71,12 +70,6 @@ function App() {
     }, [randomCategories]
   )
 
-  /** after categoryClues complete
-   *  should iterate over category clues
-   *  retrieve one clue from each category and
-   *  put into array of arrays that will create a 
-   *  new row in the table
-   */
   useEffect(
     function getClues() {
       if (categoryClues.length === NUM_CATEGORIES) {
@@ -91,6 +84,7 @@ function App() {
       }
     }, [categoryClues]
   )
+  
   return (
     <div className="app-main">
       <GameHeader/>

@@ -2,34 +2,27 @@ import {useState} from 'react';
 import "./GameClue.css";
 /** GameClue component
  *  State:
- *    - clueClicked (whether a clue has been clicked or not)
- *    - questionClicked (whether a question has been clicked or not)
+ *    - timesClicked (state to keep track of how many times clue was clicked)
+ *    - showing (handles what to show on clue)
  *  Props:
- *    - clue = {question, answer, showing}
+ *    - clue = {question, answer}
  */
 function GameClue({ clue }) {
-  const [clueClicked, setClueClicked] = useState(false);
-  const [questionClicked, setQuestionClicked] = useState(false);
+  const [timesClicked, setTimesClicked] = useState(1);
+  const [showing, setShowing] = useState("?");
 
-  function handleClueClick() {
-    setClueClicked(true);
-  }
-
-  function handleQuestionClick() {
-    setQuestionClicked(true);
+  function handleClick() {
+    setTimesClicked(timesClicked + 1);
+    if (timesClicked === 1) {
+      setShowing(clue.question);
+    } else if (timesClicked === 2) {
+      setShowing(clue.answer);
+    }
   }
 
   return (
-    <div className="clue">
-      {!clueClicked && 
-      !questionClicked && 
-      <p onClick={handleClueClick}>?</p>
-      }
-      {clueClicked && 
-      !questionClicked && 
-      <p onClick={handleQuestionClick}>{clue.question}</p>
-      }
-      {questionClicked && <p>{clue.answer}</p>}
+    <div className="clue" onClick={handleClick}>
+      <p>{showing}</p>
     </div>
   )
 }

@@ -6,6 +6,9 @@ import "./GameStart.css";
  *  State: 
  *    - showStart (whether or not to show start button)
  *    - startClicked (if start button was clicked)
+ *  
+ *  Props:
+ *    - reset() -> function to call when restart button clicked
  */
 function GameStart(props) {
 
@@ -17,6 +20,7 @@ function GameStart(props) {
     setShowStart(false);
   }
 
+  /** Calls resetGame function in parent component */
   function handleReset() {
     props.reset();
   }

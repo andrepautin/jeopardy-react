@@ -1,4 +1,12 @@
+@keyframes title {
+    from {color: white;}
+    to {color: rgb(203, 203, 48);}
+}
+
 .header {
+    font-size: 2.5em;
     text-align: center;
     color: rgb(203, 203, 48);
+    animation-name: title;
+    animation-duration: 5s;
 }
