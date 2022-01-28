@@ -9,4 +9,6 @@
     color: rgb(203, 203, 48);
     animation-name: title;
     animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
 }

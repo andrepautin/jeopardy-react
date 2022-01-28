@@ -18,20 +18,24 @@ function GameBoard(props) {
     <div className="board">
       <div>
         {categories.length !== 6 && 
-        <div className="loading">Loading Game...</div>}
+        <div className="loader"></div>}
         <table>
-          <thead>
-            {categories.length === 6 && <tr>
-              {categories.map(cat => 
-              <td className="cat-title" key={cat.title}>{cat.title}</td>)}
-            </tr>}
-          </thead>
           <tbody>
+            {categories.length === 6 && 
+            <tr>
+              {categories.map(cat => 
+              <td key={cat.title}>
+                {cat.title}
+              </td>)
+              }
+            </tr>}
             {clues.map(
               clueRow => 
                 <tr key={uuidv4()}>{clueRow.map(
                   clue => 
-                    <td key={uuidv4()}><GameClue clue={clue}/></td>)}
+                    <td key={uuidv4()}>
+                      <GameClue clue={clue}/>
+                    </td>)}
                 </tr>)}
           </tbody>
         </table>
