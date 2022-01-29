@@ -73,10 +73,10 @@ function App() {
           for (let clue of catClues) {
             if (clue.value === null) {
               clue.value = prev + 200;
-              prev = clue.value;
             }
+            prev = clue.value;
           }
-          catClues.sort((a, b) => a - b);
+          catClues.sort((a, b) => a.value - b.value);
 
           setCategoryClues(categoryClues => 
             [...categoryClues, {title: category.title, catClues: catClues}]
