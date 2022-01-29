@@ -4,11 +4,6 @@
     justify-content: center;
 }
 
-/* .cat-title {
-    color: white;
-    background-color: blue;
-    border: 2px solid black;
-} */
 
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
@@ -34,7 +29,6 @@ td {
     color: white;
     border: 1px solid black;
     width: 100vw;
-    height: max-content;
 }
 
 tr {
