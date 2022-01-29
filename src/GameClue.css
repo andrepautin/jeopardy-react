@@ -1,6 +1,7 @@
 .clue {
+    margin: 0px;
     display: flex;
     text-align: center;
     justify-content: center;
-    height: 100%;
+    /* height: 100%; */
 }
