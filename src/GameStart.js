@@ -28,7 +28,7 @@ function GameStart(props) {
   return (
     <div className="load-game">
       {showStart && !startClicked && <button onClick={handleClick}>Start</button>}
-      {startClicked && <button onClick={handleReset}>Restart</button>}
+      {startClicked && props.clues.length === 5 && <button onClick={handleReset}>Restart</button>}
       {startClicked && !showStart && <GameBoard clues={props.clues} categories={props.categories}/>}
     </div>
   );
