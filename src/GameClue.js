@@ -9,7 +9,7 @@ import "./GameClue.css";
  */
 function GameClue({ clue }) {
   const [timesClicked, setTimesClicked] = useState(1);
-  const [showing, setShowing] = useState("?");
+  const [showing, setShowing] = useState(clue.value);
 
   function handleClick() {
     setTimesClicked(timesClicked + 1);

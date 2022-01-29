@@ -11,6 +11,12 @@ const NUM_CLUES_PER_CAT = 5;
 
 /** App Component -> GameHeader
  *                -> GameStart
+ * 
+ *  State:
+ *    - randomCategories = [{id, title, clues_count}, {id, title, clues_count}...]
+ *    - categoryClues = [{title, catClues: [{question, answer, value}]}...]
+ *    - clueRows = [{question, answer, value}, {quesiton, answer, value}...]
+ *    - reset = function() -> resets state of arrays 
  */
 function App() {
   const [randomCategories, setRandomCategories] = useState([]);
@@ -58,9 +64,20 @@ function App() {
             clue = {
               question: clue.question, 
               answer: clue.answer, 
-            };
+              value: clue.value
+            }
             return clue;
-          })
+          });
+
+          let prev = 0;
+          for (let clue of catClues) {
+            if (clue.value === null) {
+              clue.value = prev + 200;
+              prev = clue.value;
+            }
+          }
+          catClues.sort((a, b) => a - b);
+
           setCategoryClues(categoryClues => 
             [...categoryClues, {title: category.title, catClues: catClues}]
           );
